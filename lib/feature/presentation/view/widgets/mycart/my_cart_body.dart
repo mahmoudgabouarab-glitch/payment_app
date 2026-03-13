@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:payment_app/core/utils/styles.dart';
 import 'package:payment_app/core/widgets/btn.dart';
+import 'package:payment_app/feature/presentation/view/widgets/mycart/choose_paymet_method.dart';
 
 class MyCartBody extends StatelessWidget {
   const MyCartBody({super.key});
@@ -23,7 +24,12 @@ class MyCartBody extends StatelessWidget {
             Divider(height: 30),
             _details("Total", "\$50"),
             SizedBox(height: 16),
-            Btn(ontap: () {}, text: "Complete Payment"),
+            Btn(
+              ontap: () {
+                _cartbttomsheet(context);
+              },
+              text: "Complete Payment",
+            ),
           ],
         ),
       ),
@@ -38,5 +44,32 @@ Widget _details(String title, String value) {
       const Spacer(),
       Text(value, style: Styles.s18),
     ],
+  );
+}
+
+Future<dynamic> _cartbttomsheet(BuildContext context) {
+  return showModalBottomSheet(
+    context: context,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
+      ),
+    ),
+    builder: (context) {
+      return Padding(
+        padding: const EdgeInsets.all(20),
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height * 0.2,
+          child: Column(
+            children: [
+              const ChoosePaymetMethod(),
+              const Spacer(),
+              Btn(ontap: () {}, text: "Paypal"),
+            ],
+          ),
+        ),
+      );
+    },
   );
 }
