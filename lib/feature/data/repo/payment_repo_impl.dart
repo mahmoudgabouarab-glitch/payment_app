@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:payment_app/core/network/api_service.dart';
 import 'package:payment_app/feature/data/model/payment_model.dart';
 import 'package:payment_app/feature/data/repo/payment_repo.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 class PaymentRepoImpl extends PaymentRepo {
   final ApiServise _api;
@@ -22,5 +23,20 @@ class PaymentRepoImpl extends PaymentRepo {
     } catch (e) {
       return Left(e.toString());
     }
+  }
+
+  @override
+  Future<void> initPaymentSheet({required String paymentIntentClientSecret}) async {
+    await Stripe.instance.initPaymentSheet(
+      paymentSheetParameters: SetupPaymentSheetParameters(
+        paymentIntentClientSecret: paymentIntentClientSecret,
+        merchantDisplayName: 'Mahmoud Gomaa',
+      ),
+    );
+  }
+
+  @override
+  Future<void> displayPaymentSheet() {
+    return Stripe.instance.presentPaymentSheet();
   }
 }

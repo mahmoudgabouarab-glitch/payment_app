@@ -6,4 +6,6 @@ abstract class PaymentRepo {
     required int amount,
     required String currency,
   });
+  Future<void> initPaymentSheet({required String paymentIntentClientSecret});
+  Future<void> displayPaymentSheet(); 
 }
