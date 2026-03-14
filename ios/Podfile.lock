@@ -1,5 +1,8 @@
 PODS:
   - Flutter (1.0.0)
+  - shared_preferences_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
   - Stripe (25.6.4):
     - StripeApplePay (= 25.6.4)
     - StripeCore (= 25.6.4)
@@ -63,6 +66,7 @@ PODS:
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - stripe_ios (from `.symlinks/plugins/stripe_ios/ios`)
 
 SPEC REPOS:
@@ -80,11 +84,14 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  shared_preferences_foundation:
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   stripe_ios:
     :path: ".symlinks/plugins/stripe_ios/ios"
 
 SPEC CHECKSUMS:
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  shared_preferences_foundation: 5086985c1d43c5ba4d5e69a4e8083a389e2909e6
   Stripe: 7cb1009980324c6c16b6a4af5843b8ef54549065
   stripe_ios: 5f33f23548330a372e3ea6a0320d8aa516b1718a
   StripeApplePay: 91000b0927f53c58a2a1f829a4ee246d508bd1c4

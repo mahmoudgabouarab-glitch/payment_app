@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:payment_app/core/utils/styles.dart';
 import 'package:payment_app/core/widgets/btn.dart';
 import 'package:payment_app/feature/presentation/view/widgets/mycart/choose_paymet_method.dart';
+import 'package:payment_app/feature/presentation/view_model/cubit/payment_cubit.dart';
 
 class MyCartBody extends StatelessWidget {
   const MyCartBody({super.key});
@@ -65,7 +67,12 @@ Future<dynamic> _cartbttomsheet(BuildContext context) {
             children: [
               const ChoosePaymetMethod(),
               const Spacer(),
-              Btn(ontap: () {}, text: "Paypal"),
+              Btn(
+                ontap: () {
+                  context.read<PaymentCubit>().postPaymentMethods();
+                },
+                text: "Paypal",
+              ),
             ],
           ),
         ),
