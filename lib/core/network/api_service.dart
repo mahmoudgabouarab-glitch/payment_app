@@ -1,21 +1,17 @@
 import 'package:dio/dio.dart';
-import 'package:payment_app/core/network/cache_helper.dart';
+import 'package:payment_app/core/network/api_keys.dart';
 
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class ApiServise {
-  final String _baseurl = "https://sonic-zdi0.onrender.com/api/";
+  final String _baseurl = "https://api.stripe.com/v1/";
   final Dio _dio;
   ApiServise(this._dio) {
     _dio.options.headers = {"Accept": "application/json"};
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          final token = CacheHelper.getDataString(key: "CacheKeys.token");
-          if (token != null && token.isNotEmpty) {
-            options.headers['Authorization'] = 'Bearer $token';
-          }
-          return handler.next(options);
+          options.headers['Authorization'] = 'Bearer ${ApiKeys.secretKey}';
         },
       ),
     );
