@@ -45,6 +45,7 @@ class ApiServise {
     required String endpoint,
     Object? data,
     Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? headers,
   }) async {
     dynamic postData = data;
     if (data is Map<String, dynamic>) {
@@ -57,6 +58,7 @@ class ApiServise {
       "$_baseurl$endpoint",
       data: postData,
       queryParameters: queryParameters,
+      options: Options(headers: headers),
     );
     return response.data;
   }
